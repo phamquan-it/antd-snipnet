@@ -1,0 +1,1354 @@
+snippet adcollapse "antd Collapse" b
+// works when >= 5.6.0, recommended ✅
+const text = `
+  A dog is a type of domesticated animal.
+  Known for its loyalty and faithfulness,
+  it can be found as a welcome guest in many households across the world.
+`;
+
+const items: CollapseProps['items'] = [
+  {
+    key: '1',
+    label: 'This is panel header 1',
+    children: <p>{text}</p>,
+  },
+  {
+    key: '2',
+    label: 'This is panel header 2',
+    children: <p>{text}</p>,
+  },
+  {
+    key: '3',
+    label: 'This is panel header 3',
+    children: <p>{text}</p>,
+  },
+];
+
+<Collapse items={items} defaultActiveKey={['1']} />;
+
+// works when <5.6.0 , deprecated when >=5.6.0  🙅🏻‍♀️
+
+<Collapse defaultActiveKey={['1']} onChange={onChange}>
+  <Panel header="This is panel header 1" key="1">
+    <p>{text}</p>
+  </Panel>
+  <Panel header="This is panel header 2" key="2">
+    <p>{text}</p>
+  </Panel>
+  <Panel header="This is panel header 3" key="3">
+    <p>{text}</p>
+  </Panel>
+</Collapse>;
+endsnippet
+
+snippet  adqrcode  "antd  QRcode" b
+<QRCode value={text || '-'} />
+endsnippet
+
+snippet adstatistic "antd Statistic" b
+<Statistic title="Feedback" value={1128} prefix={<LikeOutlined />} />
+endsnippet
+
+snippet adtree "antd tree" b
+const treeData: TreeDataNode[] = [
+  {
+    title: 'parent 1',
+    key: '0-0',
+    children: [
+      {
+        title: 'parent 1-0',
+        key: '0-0-0',
+        disabled: true,
+        children: [
+          {
+            title: 'leaf',
+            key: '0-0-0-0',
+            disableCheckbox: true,
+          },
+          {
+            title: 'leaf',
+            key: '0-0-0-1',
+          },
+        ],
+      },
+      {
+        title: 'parent 1-1',
+        key: '0-0-1',
+        children: [{ title: <span style={{ color: '#1677ff' }}>sss</span>, key: '0-0-1-0' }],
+      },
+    ],
+  },
+];
+
+  const onSelect: TreeProps['onSelect'] = (selectedKeys, info) => {
+    console.log('selected', selectedKeys, info);
+  };
+
+  const onCheck: TreeProps['onCheck'] = (checkedKeys, info) => {
+    console.log('onCheck', checkedKeys, info);
+  };
+
+    <Tree
+      checkable
+      defaultExpandedKeys={['0-0-0', '0-0-1']}
+      defaultSelectedKeys={['0-0-0', '0-0-1']}
+      defaultCheckedKeys={['0-0-0', '0-0-1']}
+      onSelect={onSelect}
+      onCheck={onCheck}
+      treeData={treeData}
+    />
+};
+endsnippet
+
+snippet adtour "antd Tour" b
+  const ref1 = useRef(null);
+  const ref2 = useRef(null);
+  const ref3 = useRef(null);
+
+  const [open, setOpen] = useState<boolean>(false);
+
+  const steps: TourProps['steps'] = [
+    {
+      title: 'Upload File',
+      description: 'Put your files here.',
+      cover: (
+        <img
+          alt="tour.png"
+          src="https://user-images.githubusercontent.com/5378891/197385811-55df8480-7ff4-44bd-9d43-a7dade598d70.png"
+        />
+      ),
+      target: () => ref1.current,
+    },
+    {
+      title: 'Save',
+      description: 'Save your changes.',
+      target: () => ref2.current,
+    },
+    {
+      title: 'Other Actions',
+      description: 'Click to see other actions.',
+      target: () => ref3.current,
+    },
+  ];
+    <>
+      <Button type="primary" onClick={() => setOpen(true)}>
+        Begin Tour
+      </Button>
+      <Divider />
+      <Space>
+        <Button ref={ref1}> Upload</Button>
+        <Button ref={ref2} type="primary">
+          Save
+        </Button>
+        <Button ref={ref3} icon={<EllipsisOutlined />} />
+      </Space>
+      <Tour open={open} onClose={() => setOpen(false)} steps={steps} />
+    </>
+endsnippet
+
+snippet adsegmented "antd Segmented" b
+<Segmented<string>
+    options={['Daily', 'Weekly', 'Monthly', 'Quarterly', 'Yearly']}
+    onChange={(value) => {
+      console.log(value); // string
+    }}
+ />
+endsnippet
+
+snippet adtabs "antd Tabs" b
+
+const onChange = (key: string) => {
+  console.log(key);
+};
+
+const items: TabsProps['items'] = [
+  {
+    key: '1',
+    label: 'Tab 1',
+    children: 'Content of Tab Pane 1',
+  },
+  {
+    key: '2',
+    label: 'Tab 2',
+    children: 'Content of Tab Pane 2',
+  },
+  {
+    key: '3',
+    label: 'Tab 3',
+    children: 'Content of Tab Pane 3',
+  },
+];
+
+<Tabs defaultActiveKey="1" items={items} onChange={onChange} />
+endsnippet
+
+snippet adcarousel "antd  Carousel" b
+const contentStyle: React.CSSProperties = {
+  margin: 0,
+  height: '160px',
+  color: '#fff',
+  lineHeight: '160px',
+  textAlign: 'center',
+  background: '#364d79',
+};
+
+  const onChange = (currentSlide: number) => {
+    console.log(currentSlide);
+  };
+
+<Carousel afterChange={onChange}>
+  <div>
+    <h3 style={contentStyle}>1</h3>
+  </div>
+  <div>
+    <h3 style={contentStyle}>2</h3>
+  </div>
+  <div>
+    <h3 style={contentStyle}>3</h3>
+  </div>
+  <div>
+    <h3 style={contentStyle}>4</h3>
+  </div>
+</Carousel>
+
+endsnippet
+
+snippet adcard "antd card" b
+ <Card title="" extra={<a href="#">More</a>}>
+              <p></p>
+</Card>
+endsnippet
+
+snippet adautocomplete "antd AutoComplete" b
+const options = [
+  { value: 'Burns Bay Road' },
+  { value: 'Downing Street' },
+  { value: 'Wall Street' },
+];
+  <AutoComplete
+    style={{ width: 200 }}
+    options={options}
+    placeholder="try to type `b`"
+    filterOption={(inputValue, option) =>
+      option!.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
+    }
+  />
+endsnippet
+
+snippet adimage "antd Image" b
+<Image width={200} src="https:/picsum.photos/200/200" />
+endsnippet
+
+snippet adtooltip "antd Tooltip" b
+<Tooltip title="prompt text">
+    <span>Tooltip will show on mouse enter.</span>
+ </Tooltip>
+endsnippet
+
+snippet adtag "antd Tag" b
+<Tag color="magenta">magenta</Tag>
+endsnippet
+
+snippet adbadge "antd Badge" b
+<Badge count={} overflowCount={}>
+	<a href="#"/>
+</Badge>
+endsnippet
+
+snippet adavatar  "antd Avatar"
+ <Avatar size={64} icon={<UserOutlined />} />
+endsnippet
+
+snippet rfc "init react component" b
+import React from 'react';
+
+const ${1:`!v expand('%:t:r')`} = () => {
+	return <></>;
+}
+
+export default $1;
+endsnippet
+
+
+snippet adinput "antd Input"  b
+<Input/>
+endsnippet
+
+snippet adformitem "antd  Form.Item"  b
+<Form.Item<${1:AnyType}>
+	label="Username"
+	name="username"
+	rules={[{ required: true }]}
+>
+	<Input/>
+</Form.Item>
+endsnippet
+
+snippet admention "antd Mentions" b
+const options = [{ value: 'sample', label: 'sample' }];
+return <Mentions options={options} />;
+endsnippet
+
+snippet adradio "antd Radio" b
+	const [value, setValue] = useState(1);
+
+	const onChange = (e: RadioChangeEvent) => {
+	console.log('radio checked', e.target.value);
+		setValue(e.target.value);
+	};
+
+	return (	
+		<Radio.Group onChange={onChange} value={value}>
+			<Radio value={1}>A</Radio>
+			<Radio value={2}>B</Radio>
+			<Radio value={3}>C</Radio>
+			<Radio value={4}>D</Radio>
+		</Radio.Group>
+	);
+endsnippet
+
+snippet adrate "antd Rate" b
+<Rate allowHalf defaultValue={2.5} />
+endsnippet
+
+snippet adselect "antd Select" b
+<Select options={[{ value: 'sample', label: <span>sample</span> }]} />
+endsnippet
+
+snippet adslider "antd Slider" b
+<Slider defaultValue={30} disabled={disabled} />
+endsnippet
+
+snippet adswitch "antd Switch" b
+<Switch defaultChecked onChange={onChange} />
+endsnippet
+
+snippet adtimepicker "antd Timpicker" b
+dayjs.extend(customParseFormat);
+
+const onChange: TimePickerProps['onChange'] = (time, timeString) => {
+	console.log(time, timeString);
+};
+<TimePicker onChange={onChange} defaultOpenValue={dayjs('00:00:00', 'HH:mm:ss')} />
+endsnippet
+
+snippet adtransfer "antd Tranfer" b
+interface RecordType {
+	key: string;
+	title: string;
+	description: string;
+}
+
+const mockData = Array.from({ length: 20 }).map<RecordType>((_, i) => ({
+	key: i.toString(),
+	title: `content${i + 1}`,
+	description: `description of content${i + 1}`,
+}));
+
+const initialTargetKeys = mockData.filter((item) => Number(item.key) > 10).map((item) => item.key);
+
+  const [targetKeys, setTargetKeys] = useState<TransferProps['targetKeys']>(initialTargetKeys);
+  const [selectedKeys, setSelectedKeys] = useState<TransferProps['targetKeys']>([]);
+
+  const onChange: TransferProps['onChange'] = (nextTargetKeys, direction, moveKeys) => {
+    console.log('targetKeys:', nextTargetKeys);
+    console.log('direction:', direction);
+    console.log('moveKeys:', moveKeys);
+    setTargetKeys(nextTargetKeys);
+  };
+
+  const onSelectChange: TransferProps['onSelectChange'] = (
+    sourceSelectedKeys,
+    targetSelectedKeys,
+  ) => {
+    console.log('sourceSelectedKeys:', sourceSelectedKeys);
+    console.log('targetSelectedKeys:', targetSelectedKeys);
+    setSelectedKeys([...sourceSelectedKeys, ...targetSelectedKeys]);
+  };
+
+  const onScroll: TransferProps['onScroll'] = (direction, e) => {
+    console.log('direction:', direction);
+    console.log('target:', e.target);
+  };
+
+<Transfer
+	dataSource={mockData}
+	titles={['Source', 'Target']}
+	targetKeys={targetKeys}
+	selectedKeys={selectedKeys}
+	onChange={onChange}
+	onSelectChange={onSelectChange}
+	onScroll={onScroll}
+	render={(item) => item.title}
+/>
+endsnippet
+
+snippet adtreeselect  "antd TreeSelect" b
+const treeData = [
+  {
+    value: 'parent 1',
+    title: 'parent 1',
+    children: [
+      {
+        value: 'parent 1-0',
+        title: 'parent 1-0',
+        children: [
+          {
+            value: 'leaf1',
+            title: 'leaf1',
+          },
+          {
+            value: 'leaf2',
+            title: 'leaf2',
+          },
+          {
+            value: 'leaf3',
+            title: 'leaf3',
+          },
+          {
+            value: 'leaf4',
+            title: 'leaf4',
+          },
+          {
+            value: 'leaf5',
+            title: 'leaf5',
+          },
+          {
+            value: 'leaf6',
+            title: 'leaf6',
+          },
+        ],
+      },
+      {
+        value: 'parent 1-1',
+        title: 'parent 1-1',
+        children: [
+          {
+            value: 'leaf11',
+            title: <b style={{ color: '#08c' }}>leaf11</b>,
+          },
+        ],
+      },
+    ],
+  },
+];
+  const [value, setValue] = useState<string>();
+
+  const onChange = (newValue: string) => {
+    setValue(newValue);
+  };
+
+  const onPopupScroll: TreeSelectProps['onPopupScroll'] = (e) => {
+    console.log('onPopupScroll', e);
+  };
+
+  return (
+    <TreeSelect
+      showSearch
+      style={{ width: '100%' }}
+      value={value}
+      dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+      placeholder="Please select"
+      allowClear
+      treeDefaultExpandAll
+      onChange={onChange}
+      treeData={treeData}
+      onPopupScroll={onPopupScroll}
+    />
+  );
+endsnippet
+
+snippet adupload "antd upload" b
+const props: UploadProps = {
+  name: 'file',
+  action: 'https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload',
+  headers: {
+    authorization: 'authorization-text',
+  },
+  onChange(info) {
+    if (info.file.status !== 'uploading') {
+      console.log(info.file, info.fileList);
+    }
+    if (info.file.status === 'done') {
+      message.success(`${info.file.name} file uploaded successfully`);
+    } else if (info.file.status === 'error') {
+      message.error(`${info.file.name} file upload failed.`);
+    }
+  },
+};
+
+<Upload {...props}>
+	<Button icon={<UploadOutlined />}>Click to Upload</Button>
+</Upload>
+endsnippet
+
+snippet adalert "antd Alert" b
+<Alert
+	message="Success Text"
+	description="Success Description Success Description Success Description"
+	type="success"
+/>
+endsnippet
+
+snippet addrawer "antd Drawer" b
+<Drawer title="Basic Drawer" onClose={onClose} open={open}>
+	<p>Some contents...</p>
+	<p>Some contents...</p>
+	<p>Some contents...</p>
+</Drawer>
+endsnippet
+
+snippet admodal "antModal" b
+<Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+	<p>Some contents...</p>
+	<p>Some contents...</p>
+	<p>Some contents...</p>
+</Modal>
+endsnippet
+
+snippet adnotification "antd Notification" b
+const [api, contextHolder] = notification.useNotification();
+
+const openNotification = () => {
+    api.open({
+      message: 'Notification Title',
+      description:
+        'I will never close automatically. This is a purposely very very long description that has many many characters and words.',
+      duration: 0,
+    });
+  };
+//
+<>
+	{contextHolder}
+	<Button type="primary" onClick={openNotification}>
+		Open the notification box
+	</Button>
+</>
+endsnippet
+
+snippet adpopconfirm "antd Popconfirm" b
+const confirm: PopconfirmProps['onConfirm'] = (e) => {
+  console.log(e);
+  message.success('Click on Yes');
+};
+
+const cancel: PopconfirmProps['onCancel'] = (e) => {
+  console.log(e);
+  message.error('Click on No');
+};
+
+  <Popconfirm
+    title="Delete the task"
+    description="Are you sure to delete this task?"
+    onConfirm={confirm}
+    onCancel={cancel}
+    okText="Yes"
+    cancelText="No"
+  >
+    <Button danger>Delete</Button>
+  </Popconfirm>
+endsnippet
+
+snippet adprogress "antd Progress" b
+<Flex gap="small" vertical>
+    <Progress percent={30} />
+    <Progress percent={50} status="active" />
+    <Progress percent={70} status="exception" />
+    <Progress percent={100} />
+    <Progress percent={50} showInfo={false} />
+ </Flex>
+endsnippet
+
+snippet adconfigprovider "antd ConfigProvider" b
+<ConfigProvider direction="rtl">
+$1
+</ConfigProvider>
+endsnippet
+
+snippet adaffix "antd Affix" b
+<Affix offsetTop={100}>
+	<Button type="primary" onClick={()=>{}}>
+		Affix top
+	</Button>
+</Affix>
+endsnippet
+
+snippet adwatermark "antd Watermark" b
+<Watermark content="Ant Design">
+	<div style={{ height: 500 }} />
+</Watermark>
+endsnippet
+
+snippet adspin "antd  Spin" b
+<Spin />
+endsnippet
+
+snippet adskeleton "antd Skeleton" b
+<Skeleton />
+endsnippet
+
+snippet adresult "antd  Result" b
+<Result
+    status="success"
+    title="Successfully Purchased Cloud Server ECS!"
+    subTitle="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
+    extra={[
+      <Button type="primary" key="console">
+        Go Console
+      </Button>,
+      <Button key="buy">Buy Again</Button>,
+    ]}
+  />
+endsnippet
+
+snippet admenu "antd Menu" b
+type MenuItem = Required<MenuProps>['items'][number];
+
+const items: MenuItem[] = [
+  {
+    key: 'sub1',
+    label: 'Navigation One',
+    icon: <MailOutlined />,
+    children: [
+      {
+        key: 'g1',
+        label: 'Item 1',
+        type: 'group',
+        children: [
+          { key: '1', label: 'Option 1' },
+          { key: '2', label: 'Option 2' },
+        ],
+      },
+      {
+        key: 'g2',
+        label: 'Item 2',
+        type: 'group',
+        children: [
+          { key: '3', label: 'Option 3' },
+          { key: '4', label: 'Option 4' },
+        ],
+      },
+    ],
+  },
+  {
+    key: 'sub2',
+    label: 'Navigation Two',
+    icon: <AppstoreOutlined />,
+    children: [
+      { key: '5', label: 'Option 5' },
+      { key: '6', label: 'Option 6' },
+      {
+        key: 'sub3',
+        label: 'Submenu',
+        children: [
+          { key: '7', label: 'Option 7' },
+          { key: '8', label: 'Option 8' },
+        ],
+      },
+    ],
+  },
+  {
+    type: 'divider',
+  },
+  {
+    key: 'sub4',
+    label: 'Navigation Three',
+    icon: <SettingOutlined />,
+    children: [
+      { key: '9', label: 'Option 9' },
+      { key: '10', label: 'Option 10' },
+      { key: '11', label: 'Option 11' },
+      { key: '12', label: 'Option 12' },
+    ],
+  },
+  {
+    key: 'grp',
+    label: 'Group',
+    type: 'group',
+    children: [
+      { key: '13', label: 'Option 13' },
+      { key: '14', label: 'Option 14' },
+    ],
+  },
+];
+
+  const onClick: MenuProps['onClick'] = (e) => {
+    console.log('click ', e);
+  };
+
+    <Menu
+      onClick={onClick}
+      style={{ width: 256 }}
+      defaultSelectedKeys={['1']}
+      defaultOpenKeys={['sub1']}
+      mode="inline"
+      items={items}
+    />
+endsnippet
+
+snippet adstep "antd Steps" b
+ <Steps
+    current={1}
+    items={[
+      {
+        title: 'Finished',
+        description:"",
+      },
+      {
+        title: 'In Progress',
+        description:"",
+        subTitle: 'Left 00:00:08',
+      },
+      {
+        title: 'Waiting',
+        description:"",
+      },
+    ]}
+  />
+endsnippet
+
+snippet adcheckbox "antd Checkbox" b
+const onChange: CheckboxProps['onChange'] = (e) => {
+	console.log(`checked = ${e.target.checked}`);
+};
+
+<Checkbox onChange={onChange}>Checkbox</Checkbox>
+endsnippet
+
+snippet 'adcolorpicker' "antd ColorPicker" b
+<ColorPicker defaultValue="#1677ff" />
+endsnippet
+
+snippet 'addatepicker' "antd DatePicker" b
+import type { DatePickerProps } from 'antd';
+import { DatePicker, Space } from 'antd';
+
+const onChange: DatePickerProps['onChange'] = (date, dateString) => {
+	console.log(date, dateString);
+};
+<DatePicker onChange={onChange} />
+endsnippet
+
+snippet adform "antd Form" b
+type FieldType = {
+  username?: string;
+  password?: string;
+  remember?: string;
+};
+
+const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
+  console.log('Success:', values);
+};
+
+const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
+  console.log('Failed:', errorInfo);
+};
+
+  <Form
+    name="basic"
+    labelCol={{ span: 8 }}
+    wrapperCol={{ span: 16 }}
+    style={{ maxWidth: 600 }}
+    initialValues={{ remember: true }}
+    onFinish={onFinish}
+    onFinishFailed={onFinishFailed}
+    autoComplete="off"
+  >
+    <Form.Item<FieldType>
+      label="Username"
+      name="username"
+      rules={[{ required: true, message: 'Please input your username!' }]}
+    >
+      <Input />
+    </Form.Item>
+
+    <Form.Item<FieldType>
+      label="Password"
+      name="password"
+      rules={[{ required: true, message: 'Please input your password!' }]}
+    >
+      <Input.Password />
+    </Form.Item>
+
+    <Form.Item<FieldType>
+      name="remember"
+      valuePropName="checked"
+      wrapperCol={{ offset: 8, span: 16 }}
+    >
+      <Checkbox>Remember me</Checkbox>
+    </Form.Item>
+
+    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+      <Button type="primary" htmlType="submit">
+        Submit
+      </Button>
+    </Form.Item>
+  </Form>
+);
+endsnippet
+
+snippet adcascader "antd Cascader" b
+import type { CascaderProps } from 'antd';
+import { Cascader } from 'antd';
+
+interface Option {
+  value: string;
+  label: string;
+  children?: Option[];
+}
+
+const options: Option[] = [
+  {
+    value: 'zhejiang',
+    label: 'Zhejiang',
+    children: [
+      {
+        value: 'hangzhou',
+        label: 'Hangzhou',
+        children: [
+          {
+            value: 'xihu',
+            label: 'West Lake',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    value: 'jiangsu',
+    label: 'Jiangsu',
+    children: [
+      {
+        value: 'nanjing',
+        label: 'Nanjing',
+        children: [
+          {
+            value: 'zhonghuamen',
+            label: 'Zhong Hua Men',
+          },
+        ],
+      },
+    ],
+  },
+];
+
+const onChange: CascaderProps<Option>['onChange'] = (value) => {
+  console.log(value);
+};
+
+<Cascader options={options} onChange={onChange} placeholder="Please select" />
+endsnippet
+
+snippet adpagination "antd Pagination" b
+<Pagination defaultCurrent={1} total={50} />
+endsnippet
+
+snippet adbreadcumb "antd Breadcumb" b
+<Breadcrumb items={[{ title: 'sample' }]} />
+endsnippet
+
+snippet addropdown "antd Dropdown" b
+const items: MenuProps['items'] = [
+	{
+		key: '1',
+		label: (
+			<a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
+				1st menu item
+			</a>
+		),
+	},
+	{
+		key: '2',
+		label: (
+			<a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
+				2nd menu item
+			</a>
+		),
+	},
+	{
+		key: '3',
+		label: (
+			<a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
+			3rd menu item
+			</a>
+			),
+	},
+];
+
+<Dropdown menu={{ items }} placement="bottomLeft">
+	<Button>dropdown</Button>
+</Dropdown>
+endsnippet
+
+snippet adtable "antd-table" b
+const dataSource = [
+	{
+		key: '1',
+		name: 'Mike',  
+		age: 32,
+		address: '10 Downing Street',
+	},
+	{
+		key: '2',
+		name: 'John',
+		age: 42,
+		address: '10 Downing Street',
+	},
+];
+
+const columns = [
+	{
+		title: 'Name',
+		dataIndex: 'name',
+		key: 'name',
+	},
+	{
+		title: 'Age',
+		dataIndex: 'age',
+		key: 'age',
+	},
+	{
+		title: 'Address',
+		dataIndex: 'address',
+		key: 'address',
+	},
+];
+
+
+<Table dataSource={dataSource} columns={columns} />;	
+endsnippet
+
+snippet adbtnfloat "antd Float Button" b
+<FloatButton
+	shape="circle"
+	type="primary"
+	icon={<CustomerServiceOutlined />}
+/>
+endsnippet
+
+snippet adtitle "antd Typography" b
+<Title>${1:h1typography}</Title>
+<Title level={2}>${1:h2typography}</Title>
+<Title level={3}>${1:h3typography}</Title>
+<Title level={4}>${1:h4typography}</Title>
+<Title level={5}>${1:h5typography}</Title>
+endsnippet
+
+
+snippet adflex "antd Flex" b
+const [value, setValue] = React.useState<string>('horizontal');
+	return (
+		<Flex gap="middle" vertical>
+			<Radio.Group value={value} onChange={(e) => setValue(e.target.value)}>
+				<Radio value="horizontal">horizontal</Radio>
+				<Radio value="vertical">vertical</Radio>
+			</Radio.Group>
+			<Flex vertical={value === 'vertical'}>
+				{Array.from({ length: 4 }).map((_, i) => (
+				<div key={i} style={{ backgroundColor: i % 2 ? '#1677ff' : '#1677ffbf' }} />
+				))}
+			</Flex>
+		</Flex>
+		)
+endsnippet
+
+snippet adanchor "antd Anchor"
+<div style={{ padding: '20px' }}>
+	<Anchor
+		direction="horizontal"
+			items={[
+				{
+					key: 'part-1',
+					href: '#part-1',
+					title: 'Part 1',
+				},
+				{
+					key: 'part-2',
+					href: '#part-2',
+					title: 'Part 2',
+				},
+				{
+					key: 'part-3',
+					href: '#part-3',
+					title: 'Part 3',
+				},
+				]}
+	/>
+</div>
+<div>
+	<div
+		id="part-1"
+		style={{
+		width: '100vw',
+		height: '100vh',
+		textAlign: 'center',
+		background: 'rgba(0,255,0,0.02)',
+		}}
+		/>
+		<div
+		id="part-2"
+		style={{
+		width: '100vw',
+		height: '100vh',
+		textAlign: 'center',
+		background: 'rgba(0,0,255,0.02)',
+		}}
+		/>
+<div id="part-3" style={{ width: '100vw', height: '100vh', textAlign: 'center', background: '#FFFBE9' }}
+		/>
+</div>
+endsnippet
+
+snippet addgrid "antd Grid" b
+<Row>
+	<Col span={24}>col</Col>
+</Row>
+<Row>
+	<Col span={12}>col-12</Col>
+	<Col span={12}>col-12</Col>
+</Row>
+endsnippet
+
+snippet addivider "antd divider" b
+<Divider orientation='center|left|center' />
+<Divider dashed type="horizontal|vertical" />
+endsnippet
+
+snippet adlayout "antd Layout" b
+import { Flex, Layout } from 'antd';
+const { Header, Footer, Sider, Content } = Layout;
+
+const headerStyle: React.CSSProperties = {
+	textAlign: 'center',
+	color: '#fff',
+	height: 64,
+	paddingInline: 48,
+	lineHeight: '64px',
+	backgroundColor: '#4096ff',
+};
+
+const contentStyle: React.CSSProperties = {
+	textAlign: 'center',
+	minHeight: 120,
+	lineHeight: '120px',
+	color: '#fff',
+	backgroundColor: '#0958d9',
+};
+
+const siderStyle: React.CSSProperties = {
+	textAlign: 'center',
+	lineHeight: '120px',
+	color: '#fff',
+	backgroundColor: '#1677ff',
+};
+
+const footerStyle: React.CSSProperties = {
+	textAlign: 'center',
+	color: '#fff',
+	backgroundColor: '#4096ff',
+};
+
+const layoutStyle = {
+	borderRadius: 8,
+	overflow: 'hidden',
+	width: 'calc(50% - 8px)',
+	maxWidth: 'calc(50% - 8px)',
+};
+
+	<Flex gap="middle" wrap>
+		<Layout style={layoutStyle}>
+			<Header style={headerStyle}>Header</Header>
+			<Content style={contentStyle}>Content</Content>
+			<Footer style={footerStyle}>Footer</Footer>
+		</Layout>
+		
+		<Layout style={layoutStyle}>
+			<Header style={headerStyle}>Header</Header>
+				<Layout>
+					<Sider width="25%" style={siderStyle}>
+						Sider
+						</Sider>
+					<Content style={contentStyle}>Content</Content>
+				</Layout>
+			<Footer style={footerStyle}>Footer</Footer>
+		</Layout>
+		
+		<Layout style={layoutStyle}>
+			<Header style={headerStyle}>Header</Header>
+				<Layout>
+					<Content style={contentStyle}>Content</Content>
+					<Sider width="25%" style={siderStyle}>
+						Sider
+					</Sider>
+				</Layout>
+			<Footer style={footerStyle}>Footer</Footer>
+		</Layout>
+		
+		<Layout style={layoutStyle}>
+			<Sider width="25%" style={siderStyle}>
+				Sider
+			</Sider>
+			<Layout>
+				<Header style={headerStyle}>Header</Header>
+				<Content style={contentStyle}>Content</Content>
+				<Footer style={footerStyle}>Footer</Footer>
+			</Layout>
+		</Layout>
+	</Flex>
+endsnippet
+
+snippet adbtn "antd Button" b
+<Button type="primary">${1}</Button>
+endsnippet
+
+snippet rfcp "init react component (with props)" b
+import React from 'react';
+interface $1Props{
+	
+}
+
+const ${1:`!v expand('%:t:r')`}:React.FC<$1Props> = () => {
+	return <></>;
+}
+
+export default $1
+endsnippet
+
+# ==========================================
+# Hooks and effects
+#
+
+snippet useS "useState()" b
+const [$1, set`!p snip.rv=upperfirst(t[1])`] = useState$3($2)$0
+endsnippet
+
+snippet useE "useEffect()" b
+useEffect(() => {
+	$0
+}, [])
+endsnippet
+
+snippet useEA "useEffect() async" b
+useEffect(() => {
+	let cancelled = false
+
+	;(async function ${3:doWork}(): Promise<${4:void}> {
+		${1:// async work here}
+		if (cancelled) {
+			return
+		}
+
+		$2
+	})()
+
+	return () => {
+		cancelled = true
+	}
+}, [])
+endsnippet
+
+snippet useC "useContext()" b
+const ${1:context} = useContext($2)$0
+endsnippet
+
+snippet useRed "useReducer(reducer, initialState, getInitialState)" b
+const [${4:state}, ${5:dispatch}] = useReducer(function reducer(state: $1, action: $2): $1 {
+	return state
+}, ${3:null})
+endsnippet
+
+snippet useCB "useCallback(fn, inputs)" b
+const ${1:callback} = useCallback(($2) => {
+	$0
+}, [])
+endsnippet
+
+snippet useM "useMemo" b
+const ${1:memoized} = useMemo(() => ({
+	$0
+}), [])
+endsnippet
+
+snippet useMR "useMemo return)" b
+const ${1:memoized} = useMemo(() => {
+	$0
+}, [])
+endsnippet
+
+snippet useR "useRef(defaultValue)" b
+const ${1:ref} = useRef$3(${2:null})$0
+endsnippet
+
+snippet useI "useImperativeHandle(ref, createHandle, [inputs])" b
+useImperativeHandle(${1:ref}, () => ({
+	$0
+}), [])
+endsnippet
+
+snippet useL "useLayoutEffect()" b
+useLayoutEffect(() => {
+	$0
+}, [])
+endsnippet
+
+snippet useDV "useDebugValue(value)" b
+useDebugValue(${1:null})
+endsnippet
+
+snippet useT "useTransition" b
+const [${1:isPending}, ${2:startTransition}] = useTransition()
+endsnippet
+
+# ==========================================
+# "Inline" versions of hooks
+#
+
+priority -1
+snippet useC "useContext()" w
+useContext($1)$0
+endsnippet
+
+snippet useCB "useCallback(fn, inputs)" w
+useCallback(($1) => {
+	$0
+}, [])
+endsnippet
+
+snippet useM "useMemo" w
+useMemo(() => ({
+	$0
+}), [])
+endsnippet
+
+snippet useMR "useMemo return" w
+useMemo(() => {
+	$0
+}, [])
+endsnippet
+
+snippet useR "useRef(defaultValue)" w
+useRef$2(${1:null})$0
+endsnippet
+
+priority 0
+
+
+# ==========================================
+# Other useful react/redux snippets
+#
+
+snippet mc "mirrored const"
+const $1 = '$1'
+endsnippet
+
+snippet useD "useAppDispatch()" b
+const dispatch = useAppDispatch()
+endsnippet
+
+snippet useDS "useDispatch()" b
+const dispatch${1:: AppDispatch} = useDispatch()
+endsnippet
+
+snippet useSL "useSelector(selector)" b
+const ${1:value} = useSelector((${2:state${3:: AppState} => $4}))
+endsnippet
+
+snippet useAS "useAppSelector(selector)" b
+const ${1:value} = useAppSelector(${2:state => $3})
+endsnippet
+
+priority -1
+snippet useD "useDispatch()" w
+useAppDispatch()
+endsnippet
+
+snippet useSL "useSelector(state)" w
+useSelector((${1:state${2:: AppState} => $3}))
+endsnippet
+
+snippet useAS "useAppSelector(state)" w
+useAppSelector(${1:state => $2})
+endsnippet
+
+priority 0
+
+# ==========================================
+# redux toolkit snippets
+#
+
+snippet cs "createSlice()" b
+const { actions, reducer } = createSlice({
+	name: "${1:`!v expand('%:t:r')`}",
+	initialState: $2,
+	reducers: {
+		$0
+	}
+})
+endsnippet
+
+snippet ecs "export createSlice()" b
+import { createSlice } from "@reduxjs/toolkit"
+
+const { actions, reducer } = createSlice({
+	name: "${1:`!v expand('%:t:r')`}",
+	initialState: $2,
+	reducers: {
+		$3: (state) => state,
+	}
+})
+
+export const { $3 } = actions
+
+export default reducer
+endsnippet
+
+snippet cpr "create prepare reducer" b
+$1: {
+	reducer(state, action: ${2:PayloadAction}<$3>) {
+		$0
+	},
+	prepare($4) {
+		return { payload: { $5 } }
+	}
+}
+endsnippet
+
+snippet cat "create async thunk" b
+export const $1 = createAsyncThunk("$2$1", async ($3) => {
+	$0
+})
+endsnippet
+
+priority -1
+
+snippet cat "create async thunk (inline)" w
+createAsyncThunk("$1", async ($2) => {
+	$0
+})
+endsnippet
+
+priority 0
+
+# ==========================================
+# General Built-Ins
+#
+
+snippet intf "create interface for file" b
+export interface ${1:`!v expand('%:t:r')`}$2 {
+	$0
+}
+endsnippet
+
+snippet re "reduce<Type>" w
+reduce<$1>((${2:result}, ${3:value}) => {
+	$0
+
+	return $2
+}, ${4:{}})
+endsnippet
+
+snippet /** "jsdoc comment" b
+/**
+ * $0
+ */
+endsnippet
